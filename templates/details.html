@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>{{patient_details.discharge}}</h3>
+    <h3>{{patient_details.patient_name}}</h3>
+    <h3>{{patient_details.patient_age}}</h3>
+    <h3>{{patient_details.disease}}</h3>
+    <h3>{{patient_details.contact_no}}</h3>
+    <h3>{{patient_details.ward_no}}</h3>
+    <h3>{{patient_details.amount_paid}}</h3>
+
+
+
+    {% if not patient_details.discharge %}
+    <a href="/update_form/?patient_id={{patient_details.id}}">Update</a>
+    {% endif %}
+{% endblock %}

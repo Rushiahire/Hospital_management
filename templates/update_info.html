@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>{{update_model.patient_name}}</h3>
+    <h3>{{update_model.patient_age}}</h3>
+    <h3>{{update_model.contact_no}}</h3>
+    
+    <form action="/update_form/" method="POST">
+        {% csrf_token %}
+        <label for=""> Disease :{{update_form.disease}}</label>
+        <label for="">ward_no : {{update_form.ward_no}}</label>
+        <label for="">amount_paid : {{update_form.amount_paid}}</label>
+        <input type='hidden' name="patient_id" value={{update_model.id}}>
+        <input type="checkbox" name="patient_discharge" value={{True}}> yes
+        <button type="submit">Update</button>
+    </form>
+{% endblock %}

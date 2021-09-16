@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="add_patient" method='POST'>
+        {% csrf_token %}
+        <label for="">Patient Name : {{patient_form.patient_name}}</label>
+        <label for="">Patient Age : {{patient_form.patient_age}}</label>
+        <label for="">Disease : {{patient_form.disease}}</label>
+        <label for="">Ward_no : {{patient_form.ward_no}}</label>
+        <label for="">Contact no : {{patient_form.contact_no}}</label>
+        <label for="">Amount paid : {{patient_form.amount_paid}}</label>
+        <button type="submit"> Add </button>
+    </form>
+{% endblock %}
