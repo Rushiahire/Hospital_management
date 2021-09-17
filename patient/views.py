@@ -1,3 +1,4 @@
+
 from django.db import reset_queries
 from django.shortcuts import redirect, render
 from django.views import View
@@ -59,4 +60,29 @@ class Update_info(View):
         updated_data.amount_paid=updated_data.amount if amount_paid== "" else updated_data.amount_paid + eval(amount_paid)
         updated_data.discharge = patient_discharge
         updated_data.save()
+        return redirect('/')
+
+class Book_appointment(View):
+    def get(self,request):
+        content = {
+            'appointment_form':forms.Appointment_form()
+        }        
+        return render(request,'book_appointment.html',content)
+
+    def post(self,request):
+        patient_name = request.POST['patient_name']
+        patient_age = request.POST['patient_age']
+        disease = request.POST['disease']
+        contact_no = request.POST['contact_no']
+        appointment_date = request.POST['appointment_date']
+
+        new_appointment = models.Appointment(
+            patient_name=patient_name,
+            patient_age=patient_age,
+            disease=disease,
+            contact_no=contact_no,
+            appointment_date=appointment_date
+        )
+
+        new_appointment.save()
         return redirect('/')

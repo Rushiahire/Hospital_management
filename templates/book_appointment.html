@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="book_appointment" method="POST">
+        {% csrf_token %}
+        {{appointment_form}}
+        <button type="submit">Booked</button>
+    </form>
+{% endblock %}

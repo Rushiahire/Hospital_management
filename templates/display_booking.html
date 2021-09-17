@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <table>
+        <tr>
+            <th>Sr No. </th>
+            <th>Patient Name</th>
+            <th>Patient age</th>
+            <th>Disease</th>
+            <th>Contact no</th>
+            <th>Appointment Date</th>     
+
+        </tr>
+        {% for appointment in updated_appoint %}
+        <tr>
+            <td>{{appointment.id}}</td>
+            <td>{{appointment.patient_name}}</td>
+            <td>{{appointment.patient_age}}</td>
+            <td>{{appointment.disease}}</td>
+            <td>{{appointment.contact_no}}</td>
+            <td>{{appointment.appointment_date}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

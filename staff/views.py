@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect 
 from django.views import View
 from patient.forms import Patient_form
-from patient.models import Patient_details
+from patient.models import Patient_details,Appointment
 from . import forms
+from django.contrib.auth.models import auth
 
 
 class Home(View):
@@ -24,11 +25,28 @@ class Login(View):
     def post(self,request):
         user_name= request.POST['user_name']
         password = request.POST['password']
-        print(user_name,password)
+        user=auth.authenticate(username = user_name,password=password)
+        if user is not None:
+            auth.login(request,user)
         return redirect('/')
+
+class Booked_appointment(View):
+    def get(self,request):
+        if request.user.is_authenticated:
+            content = {
+                'updated_appoint':Appointment.objects.all()
+            }
+            return render(request,'display_booking.html',content)
+        
+        else:
+            page = '404page.html'
+            return render(request,page)
+
+
 
 class Logout(View):
     def get(self,request):
+        auth.logout(request)
         return redirect('/')
         
 

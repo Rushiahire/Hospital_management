@@ -16,4 +16,11 @@ class Update_form(Patient_form):
     ward_no = forms.IntegerField(required=False)
     contact_no = forms.CharField(required=False)
     amount_paid = forms.IntegerField(required=False)
-    
+
+
+class Appointment_form(forms.Form):
+    patient_name = forms.CharField(max_length=30)
+    patient_age = forms.IntegerField()
+    disease = forms.CharField(max_length=20)
+    contact_no = forms.CharField(max_length=12)
+    appointment_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
